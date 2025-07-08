@@ -6,7 +6,7 @@ use App\Repository\IngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Contraints as Asert;
 use App\Entity\Ingredient;
-
+use Symfony\Bridge\Doctrine\Validator\Contraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
 #[UniqueEntity('name')]
@@ -78,5 +78,9 @@ class Ingredient
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->name;
     }
 }
